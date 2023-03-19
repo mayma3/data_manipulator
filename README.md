@@ -3,3 +3,8 @@ Data manipulator class that takes a JSON, manipulate it and outputs the manipula
 
 ## Usage
 1. 
+2.
+3.
+```bash
+test test
+```
