@@ -1,7 +1,9 @@
 # Data Maniplulator
 
 This project is part of an exercise.
-Data manipulator class that takes a JSON, manipulate it and outputs the manipulated data to a new JSON file.
+
+This is a python program that gets an input of json and outputs a new json file after manipulating the data.
+
 
 ### What we manipulate: 
 - Datetime - changing the year to 2021.
