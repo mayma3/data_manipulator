@@ -4,16 +4,28 @@ from datetime import datetime
 
 
 class DataManipulator:
+
+    json_data_dict: dict = None
+
     def __init__(self, path: Path):  # constructor function
+        print(f"Starting to parsing json {path}")
         # open file with pathlib.Path method open
         with path.open('r') as f:  # 'r' = read mode, f = file object that is created when the file is opened
             # read the json data from the file into a string called - json_data
             json_data_str: str = f.read()
             # parse the json from the string into a dictionary called - json_dict(dict is like json type in Python)
-            self.json_data_dict: dict = json.loads(json_data_str)
+            json_data_dict: dict = json.loads(json_data_str)
+            # save the data to the class
+            self.load_data(json_data_dict)
             # when adding the "self." before the object - I can use this object in any func inside the class
+        print(f"Finished to parse and load json {path}")
+
+    def load_data(self, parsed_data: dict):
+        print("Loading data to DataManipulator object")
+        self.json_data_dict = parsed_data
 
     def process_data(self):
+        print("Starting to process the parsed data")
         for key in self.json_data_dict:
             try:
                 if isinstance(self.json_data_dict[key], str):  # check if the value of the key in the dict is a string
@@ -42,9 +54,13 @@ class DataManipulator:
             except TypeError:
                 print("Bad input")
 
+        print("Finished processing data")
+
     def save_json(self, dest_path: Path):
         # if dest_path is None: # in case the user didn't enter a dest_path
         #     dest_path = Path("new_json_file.json")
+        print(f"Saving data to json path: {dest_path}")
         with dest_path.open('w') as f:
             json.dump(self.json_data_dict, f)
+        print(f"Saved json {dest_path}")
 
